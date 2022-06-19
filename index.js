@@ -11,7 +11,19 @@ let imgComparisonArray = []
 // -- build complete images array
 const completeImgSrcs = imgSrcs.concat(imgSrcs)
 
+
+
 // Functions
+const randomizeArray = () => {
+    for (let i = completeImgSrcs.length - 1; i > 0; i--){
+        let j = Math.floor(Math.random() * (i + 1))
+        let temp = completeImgSrcs[i]
+        completeImgSrcs[i] = completeImgSrcs[j]
+        completeImgSrcs[j] = temp
+    }
+}
+
+
 const toggleImg = (image) => {
     const imageToToggle = document.querySelector(`#${image.id}`)
 
@@ -58,6 +70,8 @@ const playGame = (e) => {
 
 
 // Event listeners
+// -- randomize array on load
+window.addEventListener('load', randomizeArray)
 cells.forEach(cell => {
   cell.addEventListener('click', playGame)  
 })
@@ -65,6 +79,7 @@ cells.forEach(cell => {
 
 
 // why not :
-// -- randomized images at loading
+// DONE -- randomized images at loading
+// -- add styling and annoucement of victory
 // -- timer and records for completion
 // -- size of the grid chosen by user up until 128(must be even) 
